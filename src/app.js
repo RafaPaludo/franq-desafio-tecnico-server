@@ -46,7 +46,7 @@ app.post('/register', (req, res) => {
       })
   } else {
     utils.write (`${currentDir}/users/users.json`, { name, email, password }, usersFile)
-    res.status(200).send({ message: `Usuário criado com sucesso!` })
+    res.status(200).send({ message: `Usuário criado com sucesso!`, user: { name, email } })
   }
 })
 
@@ -61,6 +61,6 @@ app.post('/login', (req, res) => {
   } else if (!validPassword) {
     res.status(400).send({ message: 'Senha incorreta!'})
   } else {
-    res.status(200).send({ message: 'Logado!', ok: true })
+    res.status(200).send({ message: 'Logado!', ok: true, user: { name: validPassword.name, email: validPassword.email }  })
   }
 })
