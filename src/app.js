@@ -18,7 +18,6 @@ app.listen(PORT, () => {
 app.get('/api/finance', async (req, res) => {
   try {
     const response = await axios.get('https://api.hgbrasil.com/finance?key=4233ee20');
-    console.log(response)
     res.json(response.data);
   } catch (error) {
     console.log('Erro')
@@ -61,6 +60,6 @@ app.post('/login', (req, res) => {
   } else if (!validPassword) {
     res.status(400).send({ message: 'Senha incorreta!'})
   } else {
-    res.status(200).send({ message: 'Logado!', ok: true, user: { name: validPassword.name, email: validPassword.email }  })
+    res.status(200).send({ message: 'Login efetuado com sucesso!', ok: true, user: { name: validPassword.name, email: validPassword.email }  })
   }
 })
